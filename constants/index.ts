@@ -228,21 +228,44 @@ export const resumes: Resume[] = [
   export const prepareInstructions = ({
     jobTitle,
     jobDescription,
-    AIResponseFormat,
+  
   }: {
     jobTitle: string;
     jobDescription: string;
-    AIResponseFormat: string;
+   
   }) =>
-    `You are an expert in ATS (Applicant Tracking System) and resume analysis.
-    Please analyze and rate this resume and suggest how to improve it.
-    The rating can be low if the resume is bad.
-    Be thorough and detailed. Don't be afraid to point out any mistakes or areas for improvement.
-    If there is a lot to improve, don't hesitate to give low scores. This is to help the user to improve their resume.
-    If available, use the job description for the job user is applying to to give more detailed feedback.
-    If provided, take the job description into consideration.
-    The job title is: ${jobTitle}
-    The job description is: ${jobDescription}
-    Provide the feedback using the following format: ${AIResponseFormat}
-    Return the analysis as a JSON object, without any other text and without the backticks.
-    Do not include any other text or comments.`;
+    `Vous êtes un expert en ATS (Applicant Tracking System) et en analyse professionnelle de CV.
+Votre rôle est de simuler le fonctionnement d’un système ATS réel utilisé par les recruteurs.
+
+Analysez le CV fourni en fonction du poste cible.
+
+Le poste visé est : ${jobTitle}
+La description du poste est : ${jobDescription}
+
+INSTRUCTIONS D’ANALYSE :
+
+1. Analysez la correspondance des mots-clés entre le CV et la description du poste.
+2. Évaluez la pertinence des compétences techniques.
+3. Évaluez la clarté, la structure et la lisibilité ATS.
+4. Vérifiez la cohérence des expériences avec le poste cible.
+5. Identifiez les compétences manquantes importantes.
+6. Identifiez les formulations faibles, génériques ou peu impactantes.
+7. Pénalisez fortement :
+   - L’absence de mots-clés essentiels
+   - Les expériences non pertinentes
+   - Une structure non optimisée pour ATS
+   - L’absence de résultats chiffrés ou mesurables
+
+SYSTÈME DE NOTATION :
+
+Attribuez une note globale sur 100.
+
+Soyez strict, objectif et analytique.
+
+FORMAT DE SORTIE :
+
+Retournez uniquement un objet JSON respectant exactement cette structure :
+${AIResponseFormat}
+
+Ne retournez aucun texte en dehors du JSON.
+N’ajoutez aucun commentaire.`;
